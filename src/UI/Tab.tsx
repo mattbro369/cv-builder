@@ -17,16 +17,16 @@ function TabComponent({ isSmallScreen }: { isSmallScreen: boolean }) {
 					</div>
 				</TabsTrigger>
 				<TabsTrigger
-					value="password"
+					value="styles"
 					className="sm:w-20">
 					<div className="flex flex-col items-center gap-1">
 						{!isSmallScreen && <SparklesIcon className="h-6" />}
-						<p className="text-sm">Customize</p>
+						<p className="text-sm">Styles</p>
 					</div>
 				</TabsTrigger>
 			</TabsList>
 			<TabsContent value="content"></TabsContent>
-			<TabsContent value="password"></TabsContent>
+			<TabsContent value="styles"></TabsContent>
 		</Tabs>
 	);
 }
