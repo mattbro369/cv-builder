@@ -7,7 +7,7 @@ function TabComponent({ isSmallScreen }: { isSmallScreen: boolean }) {
 		<Tabs
 			defaultValue="content"
 			className="w-full h-full">
-			<TabsList className="grid w-full grid-cols-2 h-full rounded-none sm:flex sm:flex-col justify-startgit ">
+			<TabsList className="grid w-full grid-cols-2 h-full rounded-none sm:flex sm:flex-col justify-start ">
 				<TabsTrigger
 					value="content"
 					className="sm:w-20">
