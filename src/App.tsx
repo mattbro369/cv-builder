@@ -3,7 +3,8 @@ import { useMediaQuery } from 'react-responsive';
 import './App.css';
 import Navbar from './UI/Content';
 import { Tabs, TabsList } from '@/components/ui/tabs';
-import TabButton from './UI/Tabs/TabButton';
+import TabButton from './UI/tabs/TabButton';
+import Input from './UI/input/InputComponent';
 
 function App() {
 	// const isDesktopOrLaptop = useMediaQuery({
@@ -30,7 +31,9 @@ function App() {
 					</TabsList>
 				</Tabs>
 			</Navbar>
-			<div className="border-border border-solid border flex-1">Input</div>
+			<div className="border-border border-solid border flex-1 ">
+				<Input />
+			</div>
 			<div className="border-border border-solid border flex-1">Content</div>
 		</div>
 	);
