@@ -1,8 +1,8 @@
 // import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import './App.css';
-import Navbar from './UI/Navbar';
-import TabComponent from './UI/Tab';
+import Navbar from './UI/Content';
+import TabComponent from './UI/Tabs/TabComponent';
 
 function App() {
 	// const isDesktopOrLaptop = useMediaQuery({
