@@ -5,7 +5,7 @@ interface IProps {
 }
 
 function Navbar({ children }: IProps) {
-	return <div className="flex justify-center">{children}</div>;
+	return <div className="flex flex-col justify-start">{children}</div>;
 }
 
 export default Navbar;
