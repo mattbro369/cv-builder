@@ -2,7 +2,8 @@
 import { useMediaQuery } from 'react-responsive';
 import './App.css';
 import Navbar from './UI/Content';
-import TabComponent from './UI/Tabs/TabComponent';
+import { Tabs, TabsList } from '@/components/ui/tabs';
+import TabButton from './UI/Tabs/TabButton';
 
 function App() {
 	// const isDesktopOrLaptop = useMediaQuery({
@@ -14,7 +15,20 @@ function App() {
 	return (
 		<div className="h-screen dark bg-background text-foreground flex flex-col sm:grid sm:grid-cols-[0.15fr_1fr_1fr] sm:grid-rows-1">
 			<Navbar>
-				<TabComponent isSmallScreen={isSmallScreen} />
+				<Tabs
+					defaultValue="content"
+					className="w-full h-full">
+					<TabsList className="grid w-full grid-cols-2 h-full rounded-none sm:flex sm:flex-col justify-start ">
+						<TabButton
+							value="content"
+							isSmallScreen={isSmallScreen}
+						/>
+						<TabButton
+							value="styles"
+							isSmallScreen={isSmallScreen}
+						/>
+					</TabsList>
+				</Tabs>
 			</Navbar>
 			<div className="border-border border-solid border flex-1">Input</div>
 			<div className="border-border border-solid border flex-1">Content</div>
