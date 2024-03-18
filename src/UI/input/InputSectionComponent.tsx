@@ -86,18 +86,20 @@ function InputSectionComponent() {
 							id="title"
 							placeholder="Title"
 						/>
-						<FormInputComponent
-							label="Start date"
-							inputType="string"
-							id="start-date"
-							placeholder="Start date"
-						/>
-						<FormInputComponent
-							label="End date"
-							inputType="string"
-							id="end-date"
-							placeholder="End date"
-						/>
+						<div className="flex">
+							<FormInputComponent
+								label="Start date"
+								inputType="string"
+								id="start-date"
+								placeholder="Start date"
+							/>
+							<FormInputComponent
+								label="End date"
+								inputType="string"
+								id="end-date"
+								placeholder="End date"
+							/>
+						</div>
 						<FormInputComponent
 							label="Location"
 							inputType="string"
