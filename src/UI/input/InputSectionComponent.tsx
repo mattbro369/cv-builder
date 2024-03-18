@@ -6,8 +6,9 @@ import {
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import FormInputComponent from './FormInputComponent';
+import ExperienceForm from './ExperienceForm';
 
-interface position {
+export interface position {
 	company: string;
 	title: string;
 	// Change to dates
@@ -17,7 +18,7 @@ interface position {
 	description: string;
 }
 
-const exp_arr: position[] = [
+const positions_arr: position[] = [
 	{
 		company: 'Umbrella',
 		title: 'Hitman',
@@ -74,44 +75,23 @@ function InputSectionComponent() {
 				<AccordionItem value="experience">
 					<AccordionTrigger>Experience</AccordionTrigger>
 					<AccordionContent className="flex flex-col gap-3">
-						<FormInputComponent
-							label="Company"
-							inputType="text"
-							id="company"
-							placeholder="Company"
-						/>
-						<FormInputComponent
-							label="Title"
-							inputType="text"
-							id="title"
-							placeholder="Title"
-						/>
-						<div className="flex">
-							<FormInputComponent
-								label="Start date"
-								inputType="string"
-								id="start-date"
-								placeholder="Start date"
-							/>
-							<FormInputComponent
-								label="End date"
-								inputType="string"
-								id="end-date"
-								placeholder="End date"
-							/>
-						</div>
-						<FormInputComponent
-							label="Location"
-							inputType="string"
-							id="location"
-							placeholder="Location"
-						/>
-						<FormInputComponent
-							label="Description"
-							inputType="textarea"
-							id="description"
-							placeholder="Description"
-						/>
+						{positions_arr.map((position) => {
+							return (
+								<div className="pl-2">
+									<AccordionItem
+										value={position.company}
+										key={positions_arr.indexOf(position)}>
+										<AccordionTrigger>{position.company}</AccordionTrigger>
+										<AccordionContent className="flex flex-col gap-3">
+											<ExperienceForm position={position} />
+										</AccordionContent>
+									</AccordionItem>
+								</div>
+							);
+						})}
+
+						{positions_arr.length < 1 && <ExperienceForm />}
+
 						<div className="flex w-full max-w-sm px-1">
 							<Button className="w-16">Add</Button>
 						</div>
