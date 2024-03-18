@@ -17,26 +17,26 @@ interface position {
 	description: string;
 }
 
-function InputSectionComponent() {
-	const exp_arr: position[] = [
-		{
-			company: 'Umbrella',
-			title: 'Hitman',
-			start: '06/1984',
-			end: '08/1990',
-			location: 'New York, USA',
-			description: 'Handled multiple issues for clients',
-		},
-		{
-			company: 'Self employed',
-			title: 'Hitman',
-			start: '08/1990',
-			end: 'Present day',
-			location: 'New York, USA',
-			description: 'Handled multiple issues for myself',
-		},
-	];
+const exp_arr: position[] = [
+	{
+		company: 'Umbrella',
+		title: 'Hitman',
+		start: '06/1984',
+		end: '08/1990',
+		location: 'New York, USA',
+		description: 'Handled multiple issues for clients',
+	},
+	{
+		company: 'Self employed',
+		title: 'Hitman',
+		start: '08/1990',
+		end: 'Present day',
+		location: 'New York, USA',
+		description: 'Handled multiple issues for myself',
+	},
+];
 
+function InputSectionComponent() {
 	return (
 		<div className="p-1">
 			<Accordion type="multiple">
@@ -74,19 +74,42 @@ function InputSectionComponent() {
 				<AccordionItem value="experience">
 					<AccordionTrigger>Experience</AccordionTrigger>
 					<AccordionContent className="flex flex-col gap-3">
-						<div>
-							{exp_arr.map((position: position) => {
-								return (
-									<div key={exp_arr.indexOf(position)}>
-										<h1>{position.company}</h1>
-										<h2>{position.title}</h2>
-										<h2>{position.start}</h2>
-										<h2>{position.end}</h2>
-										<h2>{position.location}</h2>
-									</div>
-								);
-							})}
-						</div>
+						<FormInputComponent
+							label="Company"
+							inputType="text"
+							id="company"
+							placeholder="Company"
+						/>
+						<FormInputComponent
+							label="Title"
+							inputType="text"
+							id="title"
+							placeholder="Title"
+						/>
+						<FormInputComponent
+							label="Start date"
+							inputType="string"
+							id="start-date"
+							placeholder="Start date"
+						/>
+						<FormInputComponent
+							label="End date"
+							inputType="string"
+							id="end-date"
+							placeholder="End date"
+						/>
+						<FormInputComponent
+							label="Location"
+							inputType="string"
+							id="location"
+							placeholder="Location"
+						/>
+						<FormInputComponent
+							label="Description"
+							inputType="textarea"
+							id="description"
+							placeholder="Description"
+						/>
 						<div className="flex w-full max-w-sm px-1">
 							<Button className="w-16">Add</Button>
 						</div>

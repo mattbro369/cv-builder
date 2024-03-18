@@ -13,7 +13,7 @@ function App() {
 	const isSmallScreen = useMediaQuery({ query: '(max-width: 640px)' });
 
 	return (
-		<div className="h-screen dark bg-background text-foreground flex flex-col sm:grid sm:grid-cols-[0.15fr_1fr_1fr] sm:grid-rows-1">
+		<div className="min-h-screen dark bg-background text-foreground flex flex-col sm:grid sm:grid-cols-[0.15fr_1fr_1fr] sm:grid-rows-1">
 			<div className="navbar flex flex-col justify-start">
 				<Tabs
 					defaultValue="content"
