@@ -1,4 +1,4 @@
-// import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import './App.css';
 import { Tabs, TabsList } from '@/components/ui/tabs';
@@ -6,10 +6,21 @@ import TabButton from './UI/tabs/TabButton';
 import InputSectionComponent from './UI/input/InputSectionComponent';
 
 function App() {
-	// const isDesktopOrLaptop = useMediaQuery({
-	// 	query: '(min-width: 1224px)',
-	// });
-	// const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' });
+	const [detailsData, setDetailsData] = useState({
+		name: 'Matt',
+		email: 'matt_b1@gmail.com',
+		phone: '011111111',
+		location: 'Tutorial hell',
+	});
+
+	const handleChange = (event: FormEvent<HTMLInputElement>): void => {
+		const { id, value } = event.currentTarget;
+		setDetailsData((prevState) => ({
+			...prevState,
+			[id]: value,
+		}));
+	};
+
 	const isSmallScreen = useMediaQuery({ query: '(max-width: 640px)' });
 
 	return (
@@ -31,9 +42,23 @@ function App() {
 				</Tabs>
 			</div>
 			<div className="border-border border-solid border flex-1 ">
-				<InputSectionComponent />
+				<InputSectionComponent
+					name={detailsData.name}
+					email={detailsData.email}
+					phone={detailsData.phone}
+					location={detailsData.location}
+					handleChange={handleChange}
+				/>
 			</div>
-			<div className="border-border border-solid border flex-1">Content</div>
+			<div className="border-border border-solid border flex-1 flex flex-col justify-center">
+				<h1>Personal Details </h1>
+				<div>
+					<p>{detailsData.name}</p>
+					<p>{detailsData.email}</p>
+					<p>{detailsData.phone}</p>
+					<p>{detailsData.location}</p>
+				</div>
+			</div>
 		</div>
 	);
 }
