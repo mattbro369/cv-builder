@@ -9,35 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import ExperienceForm from './ExperienceForm';
-
-export interface position {
-	company: string;
-	title: string;
-	// Change to dates
-	start: string;
-	end: string;
-	location: string;
-	description: string;
-}
-
-const positions_arr: position[] = [
-	{
-		company: 'Umbrella',
-		title: 'Hitman',
-		start: '06/1984',
-		end: '08/1990',
-		location: 'New York, USA',
-		description: 'Handled multiple issues for clients',
-	},
-	{
-		company: 'Self employed',
-		title: 'Hitman',
-		start: '08/1990',
-		end: 'Present day',
-		location: 'New York, USA',
-		description: 'Handled multiple issues for myself',
-	},
-];
+import { position } from '@/App';
 
 type detailsProps = {
 	name: string;
@@ -45,6 +17,7 @@ type detailsProps = {
 	phone: string;
 	location: string;
 	handleChange: (event: FormEvent<HTMLInputElement>) => void;
+	positions_arr: position[];
 };
 
 function InputSectionComponent({
@@ -53,6 +26,7 @@ function InputSectionComponent({
 	phone,
 	location,
 	handleChange,
+	positions_arr,
 }: detailsProps) {
 	return (
 		<div className="p-1">
@@ -64,9 +38,9 @@ function InputSectionComponent({
 							<Label htmlFor="name">Full name :</Label>
 							<Input
 								type="text"
-								id="name"
+								name="name"
 								placeholder="John Wick"
-								defaultValue={name}
+								value={name}
 								onChange={handleChange}
 							/>
 						</div>
@@ -75,9 +49,9 @@ function InputSectionComponent({
 							<Label htmlFor="email">Email :</Label>
 							<Input
 								type="email"
-								id="email"
+								name="email"
 								placeholder="babayaga@gmail.com"
-								defaultValue={email}
+								value={email}
 								onChange={handleChange}
 							/>
 						</div>
@@ -85,9 +59,9 @@ function InputSectionComponent({
 							<Label htmlFor="phone">Phone :</Label>
 							<Input
 								type="text"
-								id="phone"
+								name="phone"
 								placeholder="+34 123-456-789"
-								defaultValue={phone}
+								value={phone}
 								onChange={handleChange}
 							/>
 						</div>
@@ -95,9 +69,9 @@ function InputSectionComponent({
 							<Label htmlFor="location">Location :</Label>
 							<Input
 								type="text"
-								id="location"
+								name="location"
 								placeholder="New York, USA"
-								defaultValue={location}
+								value={location}
 								onChange={handleChange}
 							/>
 						</div>
