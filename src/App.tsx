@@ -3,7 +3,8 @@ import { useMediaQuery } from 'react-responsive';
 import './App.css';
 import { Tabs, TabsList } from '@/components/ui/tabs';
 import TabButton from './UI/tabs/TabButton';
-import InputSectionComponent from './UI/input/InputSectionComponent';
+import InputSection from './UI/input/InputSection';
+import RenderExperience from './UI/output/RenderExperience';
 
 export type position = {
 	company: string;
@@ -16,14 +17,14 @@ export type position = {
 };
 
 const positions_arr: position[] = [
-	{
-		company: 'Umbrella',
-		title: 'Hitman',
-		start: '06/1984',
-		end: '08/1990',
-		location: 'New York, USA',
-		description: 'Handled multiple issues for clients',
-	},
+	// {
+	// 	company: 'Umbrella',
+	// 	title: 'Hitman',
+	// 	start: '06/1984',
+	// 	end: '08/1990',
+	// 	location: 'New York, USA',
+	// 	description: 'Handled multiple issues for clients',
+	// },
 	// {
 	// 	company: 'Self employed',
 	// 	title: 'Hitman',
@@ -42,18 +43,26 @@ function App() {
 		location: 'Tutorial hell',
 	});
 
-	// const [expData, setExpData] = useState({
-	// 	company: 'Umbrella',
-	// 	title: 'Hitman',
-	// 	start: '01/1964',
-	// 	end: 'Present',
-	// 	location: 'New York, USA',
-	// 	description: 'Handled problems',
-	// });
+	const [expData, setExpData] = useState({
+		company: '',
+		title: '',
+		start: '',
+		end: '',
+		location: '',
+		description: '',
+	});
 
 	const handleChange = (event: FormEvent<HTMLInputElement>): void => {
 		const { id, value } = event.currentTarget;
 		setDetailsData((prevState) => ({
+			...prevState,
+			[id]: value,
+		}));
+	};
+
+	const handleExpChange = (event: FormEvent<HTMLInputElement>): void => {
+		const { id, value } = event.currentTarget;
+		setExpData((prevState) => ({
 			...prevState,
 			[id]: value,
 		}));
@@ -81,7 +90,7 @@ function App() {
 			</div>
 
 			<div className="border-border border-solid border flex-1 ">
-				<InputSectionComponent
+				<InputSection
 					name={detailsData.name}
 					email={detailsData.email}
 					phone={detailsData.phone}
@@ -90,6 +99,8 @@ function App() {
 					positions_arr={positions_arr}
 				/>
 			</div>
+
+			{/* OUTPUT */}
 			<div className="border-border border-solid border flex-1 flex flex-col justify-center">
 				<h1>Personal Details </h1>
 				<div>
@@ -100,11 +111,12 @@ function App() {
 				<br />
 				<h1>Experience</h1>
 
-				{positions_arr.map((position) =>
-					Object.entries(position).map(([key, value]) => {
-						return <div key={key}>{value}</div>;
-					})
-				)}
+				{positions_arr.map((position) => (
+					<RenderExperience
+						position={position}
+						key={positions_arr.indexOf(position)}
+					/>
+				))}
 			</div>
 		</div>
 	);

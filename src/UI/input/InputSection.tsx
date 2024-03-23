@@ -25,8 +25,8 @@ function InputSectionComponent({
 	email,
 	phone,
 	location,
-	handleChange,
 	positions_arr,
+	handleChange,
 }: detailsProps) {
 	return (
 		<div className="p-1">
@@ -38,7 +38,7 @@ function InputSectionComponent({
 							<Label htmlFor="name">Full name :</Label>
 							<Input
 								type="text"
-								name="name"
+								id="name"
 								placeholder="John Wick"
 								value={name}
 								onChange={handleChange}
@@ -49,9 +49,9 @@ function InputSectionComponent({
 							<Label htmlFor="email">Email :</Label>
 							<Input
 								type="email"
-								name="email"
-								placeholder="babayaga@gmail.com"
+								id="email"
 								value={email}
+								placeholder="babayaga@gmail.com"
 								onChange={handleChange}
 							/>
 						</div>
@@ -59,9 +59,9 @@ function InputSectionComponent({
 							<Label htmlFor="phone">Phone :</Label>
 							<Input
 								type="text"
-								name="phone"
-								placeholder="+34 123-456-789"
+								id="phone"
 								value={phone}
+								placeholder="+34 123-456-789"
 								onChange={handleChange}
 							/>
 						</div>
@@ -69,16 +69,15 @@ function InputSectionComponent({
 							<Label htmlFor="location">Location :</Label>
 							<Input
 								type="text"
-								name="location"
-								placeholder="New York, USA"
+								id="location"
 								value={location}
+								placeholder="New York, USA"
 								onChange={handleChange}
 							/>
 						</div>
 					</AccordionContent>
 				</AccordionItem>
 
-				{/* experience */}
 				<AccordionItem value="experience">
 					<AccordionTrigger>Experience</AccordionTrigger>
 					<AccordionContent className="flex flex-col gap-3">
@@ -96,8 +95,6 @@ function InputSectionComponent({
 								</div>
 							);
 						})}
-
-						{positions_arr.length < 1 && <ExperienceForm />}
 
 						<div className="flex w-full max-w-sm px-1">
 							<Button className="w-16">Add</Button>
