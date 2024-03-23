@@ -1,55 +1,70 @@
-import FormInputComponent from './FormInputComponent';
-import { position } from './InputSectionComponent';
+import { Label } from '@radix-ui/react-label';
+import { position } from '@/App';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 
 type positionProp = { position?: position };
 
 function ExperienceForm({ position }: positionProp) {
 	return (
 		<>
-			<FormInputComponent
-				label="Company"
-				inputType="text"
-				id="company"
-				placeholder="Company"
-				value={position?.company}
-			/>
-			<FormInputComponent
-				label="Title"
-				inputType="text"
-				id="title"
-				placeholder="Title"
-				value={position?.title}
-			/>
-			<div className="flex">
-				<FormInputComponent
-					label="Start date"
-					inputType="string"
-					id="start-date"
-					placeholder="Start date"
-					value={position?.start}
-				/>
-				<FormInputComponent
-					label="End date"
-					inputType="string"
-					id="end-date"
-					placeholder="End date"
-					value={position?.end}
+			<div className="flex flex-col gap-1">
+				<Label>Company: </Label>
+				<Input
+					type="text"
+					id="company"
+					placeholder="Company"
+					defaultValue={position?.company}
 				/>
 			</div>
-			<FormInputComponent
-				label="Location"
-				inputType="string"
-				id="location"
-				placeholder="Location"
-				value={position?.location}
-			/>
-			<FormInputComponent
-				label="Description"
-				inputType="textarea"
-				id="description"
-				placeholder="Description"
-				value={position?.description}
-			/>
+			<div className="flex flex-col gap-1">
+				<Label>Title: </Label>
+				<Input
+					type="text"
+					id="title"
+					placeholder="Title"
+					defaultValue={position?.title}
+				/>
+			</div>
+			<div className="flex gap-2">
+				<div className="flex flex-col gap-1 flex-1">
+					<Label>Start: </Label>
+					<Input
+						type="text"
+						id="start"
+						placeholder="Start date"
+						defaultValue={position?.start}
+					/>
+				</div>
+				<div className="flex flex-col gap-1 flex-1">
+					<div className="flex flex-col gap-1">
+						<Label>End: </Label>
+						<Input
+							type="text"
+							id="end"
+							placeholder="End date"
+							defaultValue={position?.end}
+						/>
+					</div>
+				</div>
+			</div>
+			<div className="flex flex-col gap-1">
+				<Label>Location: </Label>
+				<Input
+					type="text"
+					id="location"
+					placeholder="Location"
+					defaultValue={position?.location}
+				/>
+			</div>
+			<div className="flex flex-col gap-1">
+				<Label>Description: </Label>
+				<Textarea
+					id="description"
+					placeholder="Description"
+					defaultValue={position?.description}
+				/>
+			</div>
 		</>
 	);
 }
