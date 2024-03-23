@@ -3,34 +3,34 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { HTMLInputTypeAttribute } from 'react';
 
-interface IForm {
+type FormProps = {
 	label: string;
 	inputType: HTMLInputTypeAttribute | string;
-	id: string;
+	nameAttr: string;
 	placeholder: string;
 	value?: string;
-}
+};
 
 function FormInputComponent({
 	label,
 	inputType,
-	id,
+	nameAttr,
 	placeholder,
 	value,
-}: IForm) {
+}: FormProps) {
 	return (
 		<div className="flex flex-col w-full max-w-sm gap-1.5 px-1">
-			<Label htmlFor={id}>{label} :</Label>
+			<Label htmlFor={nameAttr}>{label} :</Label>
 			{inputType === 'textarea' ? (
 				<Textarea
-					itemID={id}
+					name={nameAttr}
 					placeholder={placeholder}
 					value={value}
 				/>
 			) : (
 				<Input
 					type={inputType}
-					id={id}
+					name={nameAttr}
 					placeholder={placeholder}
 					value={value}
 				/>
