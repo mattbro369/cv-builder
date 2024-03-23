@@ -5,6 +5,35 @@ import { Tabs, TabsList } from '@/components/ui/tabs';
 import TabButton from './UI/tabs/TabButton';
 import InputSectionComponent from './UI/input/InputSectionComponent';
 
+export type position = {
+	company: string;
+	title: string;
+	// Change to dates
+	start: string;
+	end: string;
+	location: string;
+	description: string;
+};
+
+const positions_arr: position[] = [
+	{
+		company: 'Umbrella',
+		title: 'Hitman',
+		start: '06/1984',
+		end: '08/1990',
+		location: 'New York, USA',
+		description: 'Handled multiple issues for clients',
+	},
+	// {
+	// 	company: 'Self employed',
+	// 	title: 'Hitman',
+	// 	start: '08/1990',
+	// 	end: 'Present day',
+	// 	location: 'New York, USA',
+	// 	description: 'Handled multiple issues for myself',
+	// },
+];
+
 function App() {
 	const [detailsData, setDetailsData] = useState({
 		name: 'Matt',
@@ -12,6 +41,15 @@ function App() {
 		phone: '011111111',
 		location: 'Tutorial hell',
 	});
+
+	// const [expData, setExpData] = useState({
+	// 	company: 'Umbrella',
+	// 	title: 'Hitman',
+	// 	start: '01/1964',
+	// 	end: 'Present',
+	// 	location: 'New York, USA',
+	// 	description: 'Handled problems',
+	// });
 
 	const handleChange = (event: FormEvent<HTMLInputElement>): void => {
 		const { id, value } = event.currentTarget;
@@ -41,6 +79,7 @@ function App() {
 					</TabsList>
 				</Tabs>
 			</div>
+
 			<div className="border-border border-solid border flex-1 ">
 				<InputSectionComponent
 					name={detailsData.name}
@@ -48,33 +87,27 @@ function App() {
 					phone={detailsData.phone}
 					location={detailsData.location}
 					handleChange={handleChange}
+					positions_arr={positions_arr}
 				/>
 			</div>
 			<div className="border-border border-solid border flex-1 flex flex-col justify-center">
 				<h1>Personal Details </h1>
 				<div>
-					<p>{detailsData.name}</p>
-					<p>{detailsData.email}</p>
-					<p>{detailsData.phone}</p>
-					<p>{detailsData.location}</p>
+					{Object.entries(detailsData).map(([key, value]) => {
+						return <p key={key}>{value}</p>;
+					})}
 				</div>
+				<br />
+				<h1>Experience</h1>
+
+				{positions_arr.map((position) =>
+					Object.entries(position).map(([key, value]) => {
+						return <div key={key}>{value}</div>;
+					})
+				)}
 			</div>
 		</div>
 	);
 }
 
 export default App;
-
-// {isSmallScreen ? (
-// 	<TabComponent />
-// ) : (
-// 	<>
-// 		<Button className="dark bg-background border border-solid border-border">
-// 			Content
-// 		</Button>
-// 		<Button className="dark bg-background border border-solid border-border">
-// 			Customize
-// 		</Button>
-// 	</>
-// 	<TabComponent />
-// )}
