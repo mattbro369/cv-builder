@@ -1,11 +1,23 @@
 import { Label } from '@radix-ui/react-label';
-import { position } from '@/App';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { ChangeEvent } from 'react';
+import { position } from '@/data';
 
-type positionProp = { position?: position };
+type ExpFormProp = {
+	position?: position;
+	handlePositionChange: (
+		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+		id: number
+	) => void;
+};
 
-function ExperienceForm({ position }: positionProp) {
+function ExperienceForm({ position, handlePositionChange }: ExpFormProp) {
+	if (!position) {
+		console.log(position);
+		return null; // or you can render a fallback UI here
+	}
+
 	return (
 		<>
 			<div className="flex flex-col gap-1">
@@ -13,8 +25,10 @@ function ExperienceForm({ position }: positionProp) {
 				<Input
 					type="text"
 					id="company"
+					name="company"
 					placeholder="Company"
-					defaultValue={position?.company}
+					value={position.company}
+					onChange={(event) => handlePositionChange(event, position.id)}
 				/>
 			</div>
 			<div className="flex flex-col gap-1">
@@ -22,8 +36,10 @@ function ExperienceForm({ position }: positionProp) {
 				<Input
 					type="text"
 					id="title"
+					name="title"
 					placeholder="Title"
-					defaultValue={position?.title}
+					value={position.title}
+					onChange={(event) => handlePositionChange(event, position.id)}
 				/>
 			</div>
 			<div className="flex gap-2">
@@ -32,8 +48,10 @@ function ExperienceForm({ position }: positionProp) {
 					<Input
 						type="text"
 						id="start"
+						name="start"
 						placeholder="Start date"
-						defaultValue={position?.start}
+						value={position.start}
+						onChange={(event) => handlePositionChange(event, position.id)}
 					/>
 				</div>
 				<div className="flex flex-col gap-1 flex-1">
@@ -42,8 +60,10 @@ function ExperienceForm({ position }: positionProp) {
 						<Input
 							type="text"
 							id="end"
+							name="end"
 							placeholder="End date"
-							defaultValue={position?.end}
+							value={position.end}
+							onChange={(event) => handlePositionChange(event, position.id)}
 						/>
 					</div>
 				</div>
@@ -53,16 +73,20 @@ function ExperienceForm({ position }: positionProp) {
 				<Input
 					type="text"
 					id="location"
+					name="location"
 					placeholder="Location"
-					defaultValue={position?.location}
+					value={position.location}
+					onChange={(event) => handlePositionChange(event, position.id)}
 				/>
 			</div>
 			<div className="flex flex-col gap-1">
 				<Label>Description: </Label>
 				<Textarea
 					id="description"
+					name="description"
 					placeholder="Description"
-					defaultValue={position?.description}
+					value={position.description}
+					onChange={(event) => handlePositionChange(event, position.id)}
 				/>
 			</div>
 		</>

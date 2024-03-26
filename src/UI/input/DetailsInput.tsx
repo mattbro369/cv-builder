@@ -7,24 +7,18 @@ import {
 } from '@/components/ui/accordion';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { position } from '@/App';
 
 type detailsProps = {
-	name: string;
-	email: string;
-	phone: string;
-	location: string;
+	details: {
+		name: string;
+		email: string;
+		phone: string;
+		location: string;
+	};
 	handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
-	positions_arr: position[];
 };
 
-function DetailsInput({
-	name,
-	email,
-	phone,
-	location,
-	handleChange,
-}: detailsProps) {
+function DetailsInput({ details, handleChange }: detailsProps) {
 	return (
 		<div className="p-1">
 			<Accordion type="multiple">
@@ -37,7 +31,7 @@ function DetailsInput({
 								type="text"
 								id="name"
 								placeholder="John Wick"
-								value={name}
+								value={details.name}
 								onChange={handleChange}
 							/>
 						</div>
@@ -47,7 +41,7 @@ function DetailsInput({
 							<Input
 								type="email"
 								id="email"
-								value={email}
+								value={details.email}
 								placeholder="babayaga@gmail.com"
 								onChange={handleChange}
 							/>
@@ -57,7 +51,7 @@ function DetailsInput({
 							<Input
 								type="text"
 								id="phone"
-								value={phone}
+								value={details.phone}
 								placeholder="+34 123-456-789"
 								onChange={handleChange}
 							/>
@@ -67,7 +61,7 @@ function DetailsInput({
 							<Input
 								type="text"
 								id="location"
-								value={location}
+								value={details.location}
 								placeholder="New York, USA"
 								onChange={handleChange}
 							/>

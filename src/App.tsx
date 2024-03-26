@@ -1,39 +1,13 @@
-import { FormEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import './App.css';
 import { Tabs, TabsList } from '@/components/ui/tabs';
 import TabButton from './UI/tabs/TabButton';
-import InputSection from './UI/input/InputSection';
+import DetailsInput from './UI/input/DetailsInput';
 import RenderExperience from './UI/output/RenderExperience';
-
-export type position = {
-	company: string;
-	title: string;
-	// Change to dates
-	start: string;
-	end: string;
-	location: string;
-	description: string;
-};
-
-const positions_arr: position[] = [
-	// {
-	// 	company: 'Umbrella',
-	// 	title: 'Hitman',
-	// 	start: '06/1984',
-	// 	end: '08/1990',
-	// 	location: 'New York, USA',
-	// 	description: 'Handled multiple issues for clients',
-	// },
-	// {
-	// 	company: 'Self employed',
-	// 	title: 'Hitman',
-	// 	start: '08/1990',
-	// 	end: 'Present day',
-	// 	location: 'New York, USA',
-	// 	description: 'Handled multiple issues for myself',
-	// },
-];
+import ExperienceInput from './UI/input/ExperienceInput';
+import RenderDetails from './UI/output/RenderDetails';
+import { position } from './data';
 
 function App() {
 	const [detailsData, setDetailsData] = useState({
@@ -43,16 +17,28 @@ function App() {
 		location: 'Tutorial hell',
 	});
 
-	const [expData, setExpData] = useState({
-		company: '',
-		title: '',
-		start: '',
-		end: '',
-		location: '',
-		description: '',
-	});
+	const [positions, setPositions] = useState<position[]>([
+		{
+			company: 'Umbrella',
+			title: 'Hitman',
+			start: '06/1984',
+			end: '08/1990',
+			location: 'New York, USA',
+			description: 'Handled multiple issues for clients',
+			id: 1,
+		},
+		{
+			company: 'Self employed',
+			title: 'Hitman',
+			start: '08/1990',
+			end: 'Present day',
+			location: 'New York, USA',
+			description: 'Handled multiple issues for myself',
+			id: 2,
+		},
+	]);
 
-	const handleChange = (event: FormEvent<HTMLInputElement>): void => {
+	const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
 		const { id, value } = event.currentTarget;
 		setDetailsData((prevState) => ({
 			...prevState,
@@ -60,12 +46,26 @@ function App() {
 		}));
 	};
 
-	const handleExpChange = (event: FormEvent<HTMLInputElement>): void => {
-		const { id, value } = event.currentTarget;
-		setExpData((prevState) => ({
-			...prevState,
-			[id]: value,
-		}));
+	const handlePositionChange = (
+		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+		id: number
+	) => {
+		const { name, value } = event.currentTarget;
+
+		// Find the index of the position in the positions array
+		const positionIndex = positions.findIndex((position) => position.id === id);
+
+		// Create a new array to update the state immutably
+		const updatedPositions = [...positions];
+
+		// Update the specific position's property based on the input's name
+		updatedPositions[positionIndex] = {
+			...updatedPositions[positionIndex],
+			[name]: value,
+		};
+
+		// Update the state with the new positions array
+		setPositions(updatedPositions);
 	};
 
 	const isSmallScreen = useMediaQuery({ query: '(max-width: 640px)' });
@@ -90,31 +90,28 @@ function App() {
 			</div>
 
 			<div className="border-border border-solid border flex-1 ">
-				<InputSection
-					name={detailsData.name}
-					email={detailsData.email}
-					phone={detailsData.phone}
-					location={detailsData.location}
+				<DetailsInput
+					details={detailsData}
 					handleChange={handleChange}
-					positions_arr={positions_arr}
+				/>
+
+				<ExperienceInput
+					handlePositionChange={handlePositionChange}
+					positions={positions}
 				/>
 			</div>
 
 			{/* OUTPUT */}
-			<div className="border-border border-solid border flex-1 flex flex-col justify-center">
-				<h1>Personal Details </h1>
-				<div>
-					{Object.entries(detailsData).map(([key, value]) => {
-						return <p key={key}>{value}</p>;
-					})}
-				</div>
+			<div className="border-border border-solid border flex-1 flex flex-col">
+				<RenderDetails detailsData={detailsData} />
 				<br />
+
 				<h1>Experience</h1>
 
-				{positions_arr.map((position) => (
+				{positions.map((position, key) => (
 					<RenderExperience
 						position={position}
-						key={positions_arr.indexOf(position)}
+						key={key}
 					/>
 				))}
 			</div>

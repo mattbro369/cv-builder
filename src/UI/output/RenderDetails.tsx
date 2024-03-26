@@ -12,10 +12,9 @@ function RenderDetails({ detailsData }: RenderDetailsProps) {
 		<>
 			<h1>Personal Details </h1>
 			<div>
-				<p>{detailsData.name}</p>
-				<p>{detailsData.email}</p>
-				<p>{detailsData.phone}</p>
-				<p>{detailsData.location}</p>
+				{Object.entries(detailsData).map((property, key) => {
+					return <div key={key}>{property[1]}</div>;
+				})}
 				<br />
 			</div>
 		</>
