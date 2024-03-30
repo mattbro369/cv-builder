@@ -3,20 +3,22 @@ import TabButton from './TabButton';
 
 function TabComponent({ isSmallScreen }: { isSmallScreen: boolean }) {
 	return (
-		<Tabs
-			defaultValue="content"
-			className="w-full h-full">
-			<TabsList className="grid w-full grid-cols-2 h-full rounded-none sm:flex sm:flex-col justify-start ">
-				<TabButton
-					value="content"
-					isSmallScreen={isSmallScreen}
-				/>
-				<TabButton
-					value="styles"
-					isSmallScreen={isSmallScreen}
-				/>
-			</TabsList>
-		</Tabs>
+		<div className="navbar flex flex-col justify-start">
+			<Tabs
+				defaultValue="content"
+				className="w-full h-full">
+				<TabsList className="grid w-full grid-cols-2 h-full rounded-none sm:flex sm:flex-col justify-start ">
+					<TabButton
+						value="content"
+						isSmallScreen={isSmallScreen}
+					/>
+					<TabButton
+						value="styles"
+						isSmallScreen={isSmallScreen}
+					/>
+				</TabsList>
+			</Tabs>
+		</div>
 	);
 }
 

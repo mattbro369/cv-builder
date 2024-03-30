@@ -1,8 +1,9 @@
+import { ChangeEvent } from 'react';
+
 import { Label } from '@radix-ui/react-label';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { ChangeEvent } from 'react';
-import { position } from '@/data';
+import { position } from '@/App';
 
 type ExpFormProp = {
 	position?: position;
@@ -15,7 +16,7 @@ type ExpFormProp = {
 function ExperienceForm({ position, handlePositionChange }: ExpFormProp) {
 	if (!position) {
 		console.log(position);
-		return null; // or you can render a fallback UI here
+		return null; // or render a fallback UI here
 	}
 
 	return (

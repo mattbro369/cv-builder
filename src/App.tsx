@@ -1,13 +1,24 @@
 import { ChangeEvent, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import './App.css';
-import { Tabs, TabsList } from '@/components/ui/tabs';
-import TabButton from './UI/tabs/TabButton';
+
+import TabComponent from './UI/tabs/TabComponent';
 import DetailsInput from './UI/input/DetailsInput';
-import RenderExperience from './UI/output/RenderExperience';
-import ExperienceInput from './UI/input/ExperienceInput';
+import ExperienceInput from './UI/input/Experience/ExperienceInput';
+import ExperienceForm from './UI/input/Experience/ExperienceForm';
 import RenderDetails from './UI/output/RenderDetails';
-import { position } from './data';
+import RenderExperience from './UI/output/RenderExperience';
+import './App.css';
+
+export type position = {
+	company: string;
+	title: string;
+	// Change to dates
+	start: string;
+	end: string;
+	location: string;
+	description: string;
+	id: number;
+};
 
 function App() {
 	const [detailsData, setDetailsData] = useState({
@@ -18,24 +29,24 @@ function App() {
 	});
 
 	const [positions, setPositions] = useState<position[]>([
-		{
-			company: 'Umbrella',
-			title: 'Hitman',
-			start: '06/1984',
-			end: '08/1990',
-			location: 'New York, USA',
-			description: 'Handled multiple issues for clients',
-			id: 1,
-		},
-		{
-			company: 'Self employed',
-			title: 'Hitman',
-			start: '08/1990',
-			end: 'Present day',
-			location: 'New York, USA',
-			description: 'Handled multiple issues for myself',
-			id: 2,
-		},
+		// {
+		// 	company: 'Umbrella',
+		// 	title: 'Hitman',
+		// 	start: '06/1984',
+		// 	end: '08/1990',
+		// 	location: 'New York, USA',
+		// 	description: 'Handled multiple issues for clients',
+		// 	id: 1,
+		// },
+		// {
+		// 	company: 'Self employed',
+		// 	title: 'Hitman',
+		// 	start: '08/1990',
+		// 	end: 'Present day',
+		// 	location: 'New York, USA',
+		// 	description: 'Handled multiple issues for myself',
+		// 	id: 2,
+		// },
 	]);
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -72,33 +83,30 @@ function App() {
 
 	return (
 		<div className="min-h-screen dark bg-background text-foreground flex flex-col sm:grid sm:grid-cols-[0.15fr_1fr_1fr] sm:grid-rows-1">
-			<div className="navbar flex flex-col justify-start">
-				<Tabs
-					defaultValue="content"
-					className="w-full h-full">
-					<TabsList className="grid w-full grid-cols-2 h-full rounded-none sm:flex sm:flex-col justify-start ">
-						<TabButton
-							value="content"
-							isSmallScreen={isSmallScreen}
-						/>
-						<TabButton
-							value="styles"
-							isSmallScreen={isSmallScreen}
-						/>
-					</TabsList>
-				</Tabs>
-			</div>
+			<TabComponent isSmallScreen={isSmallScreen} />
 
 			<div className="border-border border-solid border flex-1 ">
 				<DetailsInput
 					details={detailsData}
 					handleChange={handleChange}
 				/>
-
-				<ExperienceInput
-					handlePositionChange={handlePositionChange}
-					positions={positions}
-				/>
+				<ExperienceInput>
+					{positions.map((position, key) => {
+						return (
+							<ExperienceInput.Accordion
+								key={key}
+								value={`position-${key}`}
+								trigger={position.company}>
+								<ExperienceForm
+									position={position}
+									handlePositionChange={handlePositionChange}
+									key={key}
+								/>
+							</ExperienceInput.Accordion>
+						);
+					})}
+					<ExperienceInput.Button />
+				</ExperienceInput>
 			</div>
 
 			{/* OUTPUT */}
