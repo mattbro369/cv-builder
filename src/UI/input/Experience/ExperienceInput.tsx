@@ -1,14 +1,8 @@
 import { ReactNode } from 'react';
 
+import ExperienceForm from './ExperienceForm';
 import AccordionCustom from '../Accordion';
 import ButtonCustom from './ExperienceButton';
-
-// type ExperienceInputProps = {
-// 	handlePositionChange: (
-// 		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-// 		id: number
-// 	) => void;
-// };
 
 function ExperienceInput({ children }: { children: ReactNode }) {
 	return (
@@ -24,6 +18,7 @@ function ExperienceInput({ children }: { children: ReactNode }) {
 	);
 }
 
+ExperienceInput.Form = ExperienceForm;
 ExperienceInput.Accordion = AccordionCustom;
 ExperienceInput.Button = ButtonCustom;
 
