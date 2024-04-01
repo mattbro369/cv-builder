@@ -13,16 +13,16 @@ type AccordionProps = {
 
 function AccordionCustom(props: PropsWithChildren<AccordionProps>) {
 	return (
-		<div className="pl-2">
-			<Accordion type="multiple">
-				<AccordionItem value={props.value}>
-					<AccordionTrigger>{props.trigger}</AccordionTrigger>
-					<AccordionContent className="flex flex-col gap-3">
-						{props.children}
-					</AccordionContent>
-				</AccordionItem>
-			</Accordion>
-		</div>
+		<Accordion type="multiple">
+			<AccordionItem
+				value={props.value}
+				className="pl-1">
+				<AccordionTrigger>{props.trigger}</AccordionTrigger>
+				<AccordionContent className="flex flex-col gap-3">
+					{props.children}
+				</AccordionContent>
+			</AccordionItem>
+		</Accordion>
 	);
 }
 
