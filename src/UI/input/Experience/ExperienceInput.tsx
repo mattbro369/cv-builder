@@ -7,7 +7,7 @@ import ButtonCustom from './ExperienceButton';
 function ExperienceInput({ children }: { children: ReactNode }) {
 	return (
 		<>
-			<div className="p-1">
+			<div className="pl-1 pt-1 pr-1 pb-2">
 				<AccordionCustom
 					value="experience-input"
 					trigger="Experience">
