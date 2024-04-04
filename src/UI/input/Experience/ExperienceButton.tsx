@@ -1,16 +1,19 @@
 import { Button } from '@/components/ui/button';
+import { ReactNode } from 'react';
 
 type ButtonProps = {
-	addExperienceOnClick: () => void;
+	children: ReactNode;
+	handleClick: () => void;
+	style?: 'flex justify-start' | 'flex justify-end';
 };
 
-function ButtonCustom({ addExperienceOnClick }: ButtonProps) {
+function ButtonCustom({ children, handleClick, style }: ButtonProps) {
 	return (
-		<div className="flex w-full max-w-sm px-1">
+		<div className={`${style} w-full px-1`}>
 			<Button
 				className="w-16"
-				onClick={addExperienceOnClick}>
-				Add
+				onClick={handleClick}>
+				{children}
 			</Button>
 		</div>
 	);
