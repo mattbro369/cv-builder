@@ -4,7 +4,15 @@ import ExperienceForm from './ExperienceForm';
 import AccordionCustom from '../Accordion';
 import ButtonCustom from './ExperienceButton';
 
-function ExperienceInput({ children }: { children: ReactNode }) {
+type ExperienceInputProps = {
+	children: ReactNode;
+	// removeExperienceOnClick: () => void;
+};
+
+function ExperienceInput({
+	children,
+	// removeExperienceOnClick,
+}: ExperienceInputProps) {
 	return (
 		<>
 			<div className="pl-1 pt-1 pr-1 pb-2">

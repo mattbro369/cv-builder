@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, MouseEventHandler, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 import TabComponent from './UI/tabs/TabComponent';
@@ -16,7 +16,7 @@ export type position = {
 	end: string;
 	location: string;
 	description: string;
-	id: number;
+	id?: number;
 };
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
 			end: '08/1990',
 			location: 'New York, USA',
 			description: 'Handled multiple issues for clients',
-			id: 1,
+			// id: 1,
 		},
 		{
 			company: 'Self employed',
@@ -44,7 +44,7 @@ function App() {
 			end: 'Present day',
 			location: 'New York, USA',
 			description: 'Handled multiple issues for myself',
-			id: 2,
+			// id: 2,
 		},
 	]);
 
@@ -58,7 +58,7 @@ function App() {
 
 	const handlePositionChange = (
 		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-		id: number
+		id: number | undefined
 	) => {
 		const { name, value } = event.currentTarget;
 		const positionIndex = positions.findIndex((position) => position.id === id);
@@ -80,12 +80,19 @@ function App() {
 				end: '',
 				location: '',
 				description: '',
-				id: positions.length + 1, // Assigning a unique ID
+				id: positions.length + 1, // Assigning a id of the last element in positions
 			},
 		]);
 		console.log(positions);
 	};
 
+	const removeExperience = () => {
+		console.log('remove');
+	};
+
+	const reindexPositions = () => {
+		// Logic
+	};
 	const isSmallScreen = useMediaQuery({ query: '(max-width: 640px)' });
 
 	return (
@@ -113,10 +120,18 @@ function App() {
 									handlePositionChange={handlePositionChange}
 									key={key}
 								/>
+
+								<ExperienceInput.Button
+									handleClick={removeExperience}
+									style="flex justify-end">
+									Remove
+								</ExperienceInput.Button>
 							</ExperienceInput.Accordion>
 						);
 					})}
-					<ExperienceInput.Button addExperienceOnClick={addExperience} />
+					<ExperienceInput.Button handleClick={addExperience}>
+						Add
+					</ExperienceInput.Button>
 				</ExperienceInput>
 			</div>
 
