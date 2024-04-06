@@ -9,7 +9,7 @@ type ExpFormProp = {
 	position?: position;
 	handlePositionChange: (
 		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-		id: number | undefined
+		id: string
 	) => void;
 };
 

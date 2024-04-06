@@ -11,12 +11,11 @@ import './App.css';
 export type position = {
 	company: string;
 	title: string;
-	// Change to dates
 	start: string;
 	end: string;
 	location: string;
 	description: string;
-	id?: number;
+	id: string;
 };
 
 function App() {
@@ -35,7 +34,7 @@ function App() {
 			end: '08/1990',
 			location: 'New York, USA',
 			description: 'Handled multiple issues for clients',
-			// id: 1,
+			id: crypto.randomUUID(),
 		},
 		{
 			company: 'Self employed',
@@ -44,7 +43,7 @@ function App() {
 			end: 'Present day',
 			location: 'New York, USA',
 			description: 'Handled multiple issues for myself',
-			// id: 2,
+			id: crypto.randomUUID(),
 		},
 	]);
 
@@ -58,7 +57,7 @@ function App() {
 
 	const handlePositionChange = (
 		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-		id: number | undefined
+		id: string
 	) => {
 		const { name, value } = event.currentTarget;
 		const positionIndex = positions.findIndex((position) => position.id === id);
@@ -80,21 +79,9 @@ function App() {
 				end: '',
 				location: '',
 				description: '',
+				id: crypto.randomUUID(),
 			},
 		]);
-	};
-
-	const generateKey = (position: position): string => {
-		let key: string = '';
-
-		Object.values(position).map((value) => {
-			typeof value === 'string'
-				? (key += value.charAt(0) + value.charAt(1))
-				: null;
-		});
-
-		console.log(key);
-		return key;
 	};
 
 	const addLog = () => {
@@ -102,8 +89,10 @@ function App() {
 		console.log(positions);
 	};
 
-	const removeExperience = () => {
-		console.log('remove');
+	const removeExperience = (id: string) => {
+		setPositions((prevPositions) =>
+			prevPositions.filter((position) => position.id !== id)
+		);
 	};
 
 	const isSmallScreen = useMediaQuery({ query: '(max-width: 640px)' });
@@ -121,7 +110,7 @@ function App() {
 					{positions.map((position) => {
 						return (
 							<ExperienceInput.Accordion
-								key={generateKey(position)}
+								key={position.id}
 								value={`position-${positions.indexOf(position)}`}
 								trigger={
 									position.company === ''
@@ -131,11 +120,11 @@ function App() {
 								<ExperienceInput.Form
 									position={position}
 									handlePositionChange={handlePositionChange}
-									key={generateKey(position)}
+									key={position.id}
 								/>
 
 								<ExperienceInput.Button
-									handleClick={removeExperience}
+									handleClick={() => removeExperience(position.id)}
 									style="flex justify-end">
 									Remove
 								</ExperienceInput.Button>
@@ -158,7 +147,7 @@ function App() {
 				{positions.map((position) => (
 					<RenderExperience
 						position={position}
-						key={generateKey(position)}
+						key={position.id}
 					/>
 				))}
 			</div>
