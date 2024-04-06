@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEventHandler, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 import TabComponent from './UI/tabs/TabComponent';
@@ -80,9 +80,25 @@ function App() {
 				end: '',
 				location: '',
 				description: '',
-				id: positions.length + 1, // Assigning a id of the last element in positions
 			},
 		]);
+	};
+
+	const generateKey = (position: position): string => {
+		let key: string = '';
+
+		Object.values(position).map((value) => {
+			typeof value === 'string'
+				? (key += value.charAt(0) + value.charAt(1))
+				: null;
+		});
+
+		console.log(key);
+		return key;
+	};
+
+	const addLog = () => {
+		addExperience();
 		console.log(positions);
 	};
 
@@ -90,9 +106,6 @@ function App() {
 		console.log('remove');
 	};
 
-	const reindexPositions = () => {
-		// Logic
-	};
 	const isSmallScreen = useMediaQuery({ query: '(max-width: 640px)' });
 
 	return (
@@ -105,11 +118,11 @@ function App() {
 					handleChange={handleChange}
 				/>
 				<ExperienceInput>
-					{positions.map((position, key) => {
+					{positions.map((position) => {
 						return (
 							<ExperienceInput.Accordion
-								key={key}
-								value={`position-${key}`}
+								key={generateKey(position)}
+								value={`position-${positions.indexOf(position)}`}
 								trigger={
 									position.company === ''
 										? 'New Position*'
@@ -118,7 +131,7 @@ function App() {
 								<ExperienceInput.Form
 									position={position}
 									handlePositionChange={handlePositionChange}
-									key={key}
+									key={generateKey(position)}
 								/>
 
 								<ExperienceInput.Button
@@ -129,7 +142,7 @@ function App() {
 							</ExperienceInput.Accordion>
 						);
 					})}
-					<ExperienceInput.Button handleClick={addExperience}>
+					<ExperienceInput.Button handleClick={addLog}>
 						Add
 					</ExperienceInput.Button>
 				</ExperienceInput>
@@ -142,10 +155,10 @@ function App() {
 
 				<h1>Experience</h1>
 
-				{positions.map((position, key) => (
+				{positions.map((position) => (
 					<RenderExperience
 						position={position}
-						key={key}
+						key={generateKey(position)}
 					/>
 				))}
 			</div>

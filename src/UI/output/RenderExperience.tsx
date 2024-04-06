@@ -1,4 +1,4 @@
-import { position } from '@/data';
+import { position } from '@/App';
 
 type RenderExperienceProps = {
 	position: position;
