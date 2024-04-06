@@ -6,13 +6,9 @@ import ButtonCustom from './ExperienceButton';
 
 type ExperienceInputProps = {
 	children: ReactNode;
-	// removeExperienceOnClick: () => void;
 };
 
-function ExperienceInput({
-	children,
-	// removeExperienceOnClick,
-}: ExperienceInputProps) {
+function ExperienceInput({ children }: ExperienceInputProps) {
 	return (
 		<>
 			<div className="pl-1 pt-1 pr-1 pb-2">
