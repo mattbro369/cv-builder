@@ -98,7 +98,7 @@ function App() {
 	const isSmallScreen = useMediaQuery({ query: '(max-width: 640px)' });
 
 	return (
-		<div className="min-h-screen dark bg-background text-foreground flex flex-col sm:grid sm:grid-cols-[0.15fr_1fr_1fr] sm:grid-rows-1">
+		<div className="min-h-screen dark bg-background text-foreground flex flex-col sm:grid sm:grid-cols-[80px_320px_1fr] sm:grid-rows-1">
 			<TabComponent isSmallScreen={isSmallScreen} />
 
 			<div className="border-border border-solid border flex-1 ">
@@ -138,7 +138,7 @@ function App() {
 			</div>
 
 			{/* OUTPUT */}
-			<div className="border-border border-solid border flex-1 flex flex-col">
+			<div className="flex-1 flex flex-col">
 				<RenderDetails detailsData={detailsData} />
 				<br />
 
