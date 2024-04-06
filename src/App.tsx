@@ -92,35 +92,12 @@ function App() {
 					details={detailsData}
 					handleChange={handleChange}
 				/>
-				<ExperienceInput>
-					{positions.map((position) => {
-						return (
-							<ExperienceInput.Accordion
-								key={position.id}
-								value={`position-${positions.indexOf(position)}`}
-								trigger={
-									position.company === ''
-										? 'New Position*'
-										: `${position.company}`
-								}>
-								<ExperienceInput.Form
-									position={position}
-									handlePositionChange={handlePositionChange}
-									key={position.id}
-								/>
-
-								<ExperienceInput.Button
-									handleClick={() => removeExperience(position.id)}
-									style="flex justify-end">
-									Remove
-								</ExperienceInput.Button>
-							</ExperienceInput.Accordion>
-						);
-					})}
-					<ExperienceInput.Button handleClick={addExperience}>
-						Add
-					</ExperienceInput.Button>
-				</ExperienceInput>
+				<ExperienceInput
+					positions={positions}
+					handlePositionChange={handlePositionChange}
+					removeExperience={removeExperience}
+					addExperience={addExperience}
+				/>
 			</div>
 
 			{/* OUTPUT */}
