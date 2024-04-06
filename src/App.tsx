@@ -1,22 +1,13 @@
 import { ChangeEvent, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
+import { Position } from './types';
 import TabComponent from './UI/tabs/TabComponent';
 import DetailsInput from './UI/input/DetailsInput';
 import ExperienceInput from './UI/input/Experience/ExperienceInput';
 import RenderDetails from './UI/output/RenderDetails';
 import RenderExperience from './UI/output/RenderExperience';
 import './App.css';
-
-export type position = {
-	company: string;
-	title: string;
-	start: string;
-	end: string;
-	location: string;
-	description: string;
-	id: string;
-};
 
 function App() {
 	const [detailsData, setDetailsData] = useState({
@@ -26,7 +17,7 @@ function App() {
 		location: 'Tutorial hell',
 	});
 
-	const [positions, setPositions] = useState<position[]>([
+	const [positions, setPositions] = useState<Position[]>([
 		{
 			company: 'Umbrella',
 			title: 'Hitman',
