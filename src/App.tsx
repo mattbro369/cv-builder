@@ -84,11 +84,6 @@ function App() {
 		]);
 	};
 
-	const addLog = () => {
-		addExperience();
-		console.log(positions);
-	};
-
 	const removeExperience = (id: string) => {
 		setPositions((prevPositions) =>
 			prevPositions.filter((position) => position.id !== id)
@@ -131,7 +126,7 @@ function App() {
 							</ExperienceInput.Accordion>
 						);
 					})}
-					<ExperienceInput.Button handleClick={addLog}>
+					<ExperienceInput.Button handleClick={addExperience}>
 						Add
 					</ExperienceInput.Button>
 				</ExperienceInput>
