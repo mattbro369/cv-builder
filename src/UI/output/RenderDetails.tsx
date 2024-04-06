@@ -1,10 +1,7 @@
+import { PersonalDetails } from '@/types';
+
 type RenderDetailsProps = {
-	detailsData: {
-		name: string;
-		email: string;
-		phone: string;
-		location: string;
-	};
+	detailsData: PersonalDetails;
 };
 
 function RenderDetails({ detailsData }: RenderDetailsProps) {
