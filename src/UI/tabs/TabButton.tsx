@@ -20,7 +20,7 @@ function TabButton({ value, isSmallScreen }: IProps) {
 	return (
 		<TabsTrigger
 			value={value}
-			className="sm:w-20">
+			className="m:w-20">
 			<div className="flex flex-col items-center gap-1">
 				{!isSmallScreen && icon}
 				<p className="text-sm">

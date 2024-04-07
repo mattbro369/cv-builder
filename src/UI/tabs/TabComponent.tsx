@@ -7,7 +7,7 @@ function TabComponent({ isSmallScreen }: { isSmallScreen: boolean }) {
 			<Tabs
 				defaultValue="content"
 				className="w-full h-full">
-				<TabsList className="grid w-full grid-cols-2 h-full rounded-none sm:flex sm:flex-col justify-start ">
+				<TabsList className="grid p-0 w-full grid-cols-2 h-full rounded-none md:flex md:flex-col justify-start ">
 					<TabButton
 						value="content"
 						isSmallScreen={isSmallScreen}

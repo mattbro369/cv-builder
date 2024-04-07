@@ -38,7 +38,7 @@ function App() {
 		},
 	]);
 
-	const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+	const handleDetailsChange = (event: ChangeEvent<HTMLInputElement>): void => {
 		const { id, value } = event.currentTarget;
 		setDetailsData((prevState) => ({
 			...prevState,
@@ -81,16 +81,16 @@ function App() {
 		);
 	};
 
-	const isSmallScreen = useMediaQuery({ query: '(max-width: 640px)' });
+	const isSmallScreen = useMediaQuery({ query: '(max-width: 768px)' });
 
 	return (
-		<div className="min-h-screen dark bg-background text-foreground flex flex-col sm:grid sm:grid-cols-[80px_320px_1fr] sm:grid-rows-1">
+		<div className="min-h-screen dark bg-background text-foreground flex flex-col md:grid md:grid-cols-[80px_300px_1fr] md:grid-rows-1 ">
 			<TabComponent isSmallScreen={isSmallScreen} />
 
 			<div className="border-border border-solid border flex-1 ">
 				<DetailsInput
 					details={detailsData}
-					handleChange={handleChange}
+					handleChange={handleDetailsChange}
 				/>
 				<ExperienceInput
 					positions={positions}
@@ -101,7 +101,9 @@ function App() {
 			</div>
 
 			{/* OUTPUT */}
-			<div className="flex-1 flex flex-col">
+			<div
+				className="flex-1 flex flex-col bg-white text-black items-center overflow-scroll
+			">
 				<RenderDetails detailsData={detailsData} />
 				<br />
 
