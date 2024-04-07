@@ -105,7 +105,6 @@ function App() {
 				className="flex bg-white text-black overflow-scroll
 			">
 				<RenderDetails detailsData={detailsData} />
-				<br />
 
 				<div>
 					<h1>Experience</h1>
