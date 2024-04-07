@@ -11,10 +11,10 @@ import './App.css';
 
 function App() {
 	const [detailsData, setDetailsData] = useState({
-		name: 'Matt',
+		name: 'Matthew Brown',
 		email: 'matt_b1@gmail.com',
-		phone: '011111111',
-		location: 'Tutorial hell',
+		phone: '+34 611 476 699',
+		location: 'Marbella, Spain',
 	});
 
 	const [positions, setPositions] = useState<Position[]>([
@@ -102,19 +102,20 @@ function App() {
 
 			{/* OUTPUT */}
 			<div
-				className="flex-1 flex flex-col bg-white text-black items-center overflow-scroll
+				className="flex bg-white text-black overflow-scroll
 			">
 				<RenderDetails detailsData={detailsData} />
 				<br />
 
-				<h1>Experience</h1>
-
-				{positions.map((position) => (
-					<RenderExperience
-						position={position}
-						key={position.id}
-					/>
-				))}
+				<div>
+					<h1>Experience</h1>
+					{positions.map((position) => (
+						<RenderExperience
+							position={position}
+							key={position.id}
+						/>
+					))}
+				</div>
 			</div>
 		</div>
 	);

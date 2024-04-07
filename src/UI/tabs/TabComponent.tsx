@@ -23,20 +23,3 @@ function TabComponent({ isSmallScreen }: { isSmallScreen: boolean }) {
 }
 
 export default TabComponent;
-
-/* <TabsTrigger
-					value="content"
-					className="sm:w-20">
-					<div className="flex flex-col items-center gap-1">
-						{!isSmallScreen && <PencilIcon className="h-6" />}
-						<p className="text-sm">Content</p>
-					</div>
-				</TabsTrigger>
-				<TabsTrigger
-					value="styles"
-					className="sm:w-20">
-					<div className="flex flex-col items-center gap-1">
-						{!isSmallScreen && <SparklesIcon className="h-6" />}
-						<p className="text-sm">Styles</p>
-					</div>
-				</TabsTrigger> */
